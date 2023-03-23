@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Dwarf's Quest</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<style>
+			body{
+				background-image: url('https://render.fineartamerica.com/images/rendered/default/flat/puzzle/images/artworkimages/medium/3/mosaic-floor-israel-barb-gabay.jpg?&targetx=-62&targety=0&imagewidth=1125&imageheight=750&modelwidth=1000&modelheight=750&backgroundcolor=957F71&orientation=0&producttype=puzzle-18-24&brightness=389&v=6');
+				background-size: cover;
+			}
+
+			h3{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 15px;
+				
+			}
+			#content{
+				background-color: rgba(255, 228, 196, 0.785);
+				border: 7px solid rgb(53, 36, 19);
+				width: 700px;
+				height: 550px;
+				margin: auto;
+				padding: 15px;
+				margin-top: 110px;
+			}
+
+			p, label{
+				font-family: 'Righteous', cursive;
+			}
+
+			td {
+				border: 1px solid transparent;
+				height: 2.0em;
+				text-align: center;
+				width: 2.0em;
+			}
+			td.selected {
+				color: green;
+				font-weight: bold;
+			}
+
+			td.separator-up {
+				border-bottom: 1px solid black;
+			}
+			td.separator-right {
+				border-left: 1px solid black;
+			}
+			td.separator-down {
+				border-top: 1px solid black;
+			}
+			td.separator-left {
+				border-right: 1px solid black;
+			}
+
+			td.domino-up, td.domino-right, td.domino-down, td.domino-left {
+				background-color: black;
+				color: white;
+			}
+			td.domino-up {
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+			}
+			td.domino-right {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+			td.domino-down {
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+			td.domino-left {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			li {
+				padding: 1px;
+			}
+			div.domino-left, div.domino-right {
+				background-color: black;
+				color: white;
+				float: left;
+				height: 1.5em;
+				text-align: center;
+				width: 1.5em;
+			}
+			div.domino-left {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+			div.domino-right {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+				margin-right: 0.5em;
+			}
+		</style>
+		<script>
+			let selected;
+			let selectedRow;
+			let selectedCol;
+
+			function addClass(element, cl4ss) {
+				element.setAttribute("class", `${element.getAttribute("class") || ""} ${cl4ss}`);
+			}
+			function removeClass(element, cl4ss) {
+				element.setAttribute("class", (element.getAttribute("class") || "").replace(cl4ss,""));
+			}
+			function hasClass(element, cl4ss) {
+				return (element.getAttribute("class") || "").indexOf(cl4ss) != -1;
+			}
+
+			function getDominoElement(firstTile, secondTile) {
+				firstTileNumber = Number(firstTile.innerHTML);
+				secondTileNumber = Number(secondTile.innerHTML);
+				if (secondTileNumber < firstTileNumber) return document.getElementById(`d${secondTileNumber}${firstTileNumber}`);
+				else return document.getElementById(`d${firstTileNumber}${secondTileNumber}`);
+			}
+			function placeDomino(firstTile, secondTile, direction) {
+				removeClass(firstTile, "selected");
+				removeClass(secondTile, "selected");
+				let placing;
+				if (document.getElementById("placeDomino").checked) {
+					placing = "domino";
+					getDominoElement(firstTile, secondTile).innerHTML++;
+				} else {
+					placing = "separator";
+				}
+				if (direction == "horizontal") {
+					if (placing == "separator" && hasClass(firstTile, "separator-left")) {
+						removeClass(firstTile, `${placing}-left`);
+						removeClass(secondTile, `${placing}-right`);
+					} else {
+						addClass(firstTile, `${placing}-left`);
+						addClass(secondTile, `${placing}-right`);
+					}
+				} else {
+					if (placing == "separator" && hasClass(firstTile, "separator-up")) {
+						removeClass(firstTile, `${placing}-up`);
+						removeClass(secondTile, `${placing}-down`);
+					} else {
+						addClass(firstTile, `${placing}-up`);
+						addClass(secondTile, `${placing}-down`);
+					}
+				}
+			}
+
+			function tileClick(event, row, col) {
+				let clicked = event.target
+				if (!hasClass(clicked, "domino")) {
+					if (selected == undefined) { // select tile
+						selected = clicked;
+						addClass(selected, "selected");
+						selectedRow = row;
+						selectedCol = col;
+					} else if (selected == clicked) { // deselect tile
+						removeClass(selected, "selected");
+						selected = undefined;
+					} else if (selectedRow == row && Math.abs(selectedCol - col) == 1) { // place horizontal domino/separator
+						if (selectedCol < col) {
+							placeDomino(selected, clicked, "horizontal");
+						} else {
+							placeDomino(clicked, selected, "horizontal");
+						}
+						selected = undefined;
+					} else if (selectedCol == col && Math.abs(selectedRow - row) == 1) { // place vertical domino/separator
+						if (selectedRow < row) {
+							placeDomino(selected, clicked, "vertical");
+						} else {
+							placeDomino(clicked, selected, "vertical");
+						}
+						selected = undefined;
+					} else { // select new tile
+						removeClass(selected, "selected");
+						selected = clicked;
+						addClass(selected, "selected");
+						selectedRow = row;
+						selectedCol = col;
+					}
+				} else { // delete domino
+					if (selected != undefined) removeClass(selected, "selected");
+					selected = undefined;
+					let otherTile;
+					if (hasClass(clicked, "domino-up")) {
+						otherTile = document.getElementById(`t${Number(clicked.id[1]) + 1}${Number(clicked.id[2])}`);
+						removeClass(clicked, "domino-up");
+						removeClass(otherTile, "domino-down");
+					} else if (hasClass(clicked, "domino-right")) {
+						otherTile = document.getElementById(`t${Number(clicked.id[1])}${Number(clicked.id[2]) - 1}`);
+						removeClass(clicked, "domino-right");
+						removeClass(otherTile, "domino-left");
+					} else if (hasClass(clicked, "domino-down")) {
+						otherTile = document.getElementById(`t${Number(clicked.id[1]) - 1}${Number(clicked.id[2])}`);
+						removeClass(clicked, "domino-down");
+						removeClass(otherTile, "domino-up");
+					} else if (hasClass(clicked, "domino-left")) {
+						otherTile = document.getElementById(`t${Number(clicked.id[1])}${Number(clicked.id[2]) + 1}`);
+						removeClass(clicked, "domino-left");
+						removeClass(otherTile, "domino-right");
+					}
+					getDominoElement(clicked, otherTile).innerHTML--;
+				}
+				if (checkWin()) {
+					alert("You did great!");
+					removeClass(document.getElementById("continue"), "d-none")
+				}
+			}
+			function checkWin() {
+				for (let i = 1; i <= 3; i++) for (let j = i; j <= 3; j++) {
+					if (document.getElementById(`d${i}${j}`).innerHTML != 1) return false;
+				}
+				return true;
+			}
+
+			function musicPlay(){
+				music1.play();
+			}
+		</script>
+	</head>
+	<body onmousemove="musicPlay()">
+		<audio loop id="music1">
+		<source src="medieval-quest.mp3">
+		</audio>
+
+		<div id="content">
+		<h3> You encountered a mysterious puzzle, which you will need to solve in order to continue on your journey. You will have to find the location of all dominoes on the grid. A domino is a pair of numbers. You can have only one of each pair. Good luck traveller!</h3>
+		<table style="border-spacing: 0px;">
+			<tr>
+				<td id="t00" onclick="tileClick(event, 0, 0)">1</td>
+				<td id="t01" onclick="tileClick(event, 0, 1)">1</td>
+				<td id="t02" onclick="tileClick(event, 0, 2)">2</td>
+				<td id="t03" onclick="tileClick(event, 0, 3)">2</td>
+			</tr>
+			<tr>
+				<td id="t10" onclick="tileClick(event, 1, 0)">1</td>
+				<td id="t11" onclick="tileClick(event, 1, 1)">1</td>
+				<td id="t12" onclick="tileClick(event, 1, 2)">2</td>
+				<td id="t13" onclick="tileClick(event, 1, 3)">2</td>
+			</tr>
+			<tr>
+				<td id="t20" onclick="tileClick(event, 2, 0)">3</td>
+				<td id="t21" onclick="tileClick(event, 2, 1)">3</td>
+				<td id="t22" onclick="tileClick(event, 2, 2)">3</td>
+				<td id="t23" onclick="tileClick(event, 2, 3)">3</td>
+			</tr>
+		</table>
+		<label><input id="placeDomino" type="checkbox"> Place dominoes</label>
+		<p>Dominoes:</p>
+		<ul>
+			<li><div class="domino-left">1</div><div class="domino-right">1</div> x<span id="d11">0</span></li>
+			<li><div class="domino-left">1</div><div class="domino-right">2</div> x<span id="d12">0</span></li>
+			<li><div class="domino-left">1</div><div class="domino-right">3</div> x<span id="d13">0</span></li>
+			<li><div class="domino-left">2</div><div class="domino-right">2</div> x<span id="d22">0</span></li>
+			<li><div class="domino-left">2</div><div class="domino-right">3</div> x<span id="d23">0</span></li>
+			<li><div class="domino-left">3</div><div class="domino-right">3</div> x<span id="d33">0</span></li>
+		</ul>
+		<a id="continue" href="Scene_Maze.html" class="btn btn-dark float-end d-none">Continue on your journey</a>
+		</div>
+	</body>
+</html>

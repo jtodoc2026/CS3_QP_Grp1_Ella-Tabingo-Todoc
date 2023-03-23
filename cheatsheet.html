@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1">
+        <title>Cheats</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Rubik+Iso&display=swap" rel="stylesheet">
+    
+    <style>
+        body{
+            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/379/607/desktop-wallpaper-artwork-digital-art-landscape-philipp-a-ulrich-pixel-art-pixelated-waterfall-trees-1920x960-spring-pixel-art.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }            
+            
+        h1{
+            background-color: #e8b881;
+            border: solid rgb(48, 32, 18) 5px;
+            font-family: 'Rubik Iso', cursive;
+            font-size: 60px;
+            text-align: center;
+            margin: auto;
+            margin-top: 10px;
+            width: 800px;
+        }
+        h5{
+            font-family: 'Press Start 2P', cursive;
+            color:rgb(112, 76, 43);
+        }
+        #rules{
+            background-color: #e8b881;
+            border: solid rgb(74, 48, 24) 10px;
+            width: 800px;
+            margin:auto;
+            padding: 50px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        li{
+            font-family: 'Press Start 2P', cursive;
+            color:rgb(112, 76, 43);
+            font-size: 15px;
+        }
+
+        #backtoTitlePage{
+            margin:auto;
+            text-align: center;
+            width: 190px;
+            font-family: 'Press Start 2P', cursive;
+            display: block;
+            padding: 10px;
+        }
+        #find{
+            width: 100%;
+            margin-bottom: 20px;
+            height: 500px;
+        }
+        #maze{
+            width: 100%;
+            margin-bottom: 20px;
+            height: 400px;
+        }
+    </style>
+
+    <script>
+        function musicPlay(){
+            music1.play();
+        }
+    </script>
+    </head>
+
+    <body onmousemove="musicPlay()">
+        <audio loop id="music1">
+            <source src="soldier....instrumental.mp3">
+            </audio>
+    
+        <h1>Cheats</h1>
+
+        <div id="rules">
+            <h5>Below are tips and tricks to finish the game faster than the normal pace</h5>       
+                <ul>
+                    <li>To play fast through the dialogues, just keep on hitting the next button <br> </li> 
+                    <li>Use the image below to quickly detect and press the items in the 1st game, which is the detective game <br></li> 
+                    <li><img src="finding.jpg" id="find" alt="locations of hidden things"></li>
+                    <li>For the 2nd game, follow the instructions below:
+                        <br>
+                        1,1 = pair the 1’s side-by-side at the top
+                        <br>
+                        1,2 = pair the 1 and 2 in the middle
+                        <br>
+                        1,3 =  pair the 1 at left-most side at the 2nd row with the 3 at the bottom left corner
+                        <br>
+                        2,2 = pair the 2’s side-by-side at the top
+                        <br>
+                        2,3 = pair the 2 at right-most side at the 2nd row with the 3 at the bottom right corner
+                        <br>
+                        3,3 = pair the 3’s in the middle at the 3rd row
+                    </li> 
+                    <li>Use the maze map below to get through the maze in the 3rd quest in under 30 seconds.<br></li> 
+                    <li><img src="dun.png" id="maze" alt="maze map"></li>
+                    <li>As for the final quest, the sequence of the correct letters is D, A, B, A, C <br></li>
+                    <li>That’s it, ENJOY THE GAME!!!</li>
+                </ul>
+        </div>
+
+        <a class="btn btn-dark" id="backtoTitlePage" href="index.html">Back to Menu &gt;&gt;</a>
+    </body>
+    </html>

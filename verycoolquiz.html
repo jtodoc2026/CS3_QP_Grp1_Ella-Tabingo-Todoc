@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1">
+        <title>Restoring Their Former Glory</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Bebas+Neue&family=Bungee&family=Comfortaa:wght@400;600&family=Fira+Sans&family=Josefin+Sans:ital,wght@1,300&family=Manrope&family=Montserrat&family=Nabla&family=Nunito:wght@300&family=Open+Sans&family=Overpass&family=Phudu&family=Poppins:ital@1&family=Press+Start+2P&family=Roboto&family=Shadows+Into+Light&family=Staatliches&display=swap" rel="stylesheet">        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script>
+            var quizScore = 0;
+
+            function wrongAnswer(id){
+                quizScore-=100;
+                document.getElementById(id).style.background="red";
+                document.getElementById('score').innerHTML = "Score: " + quizScore;
+                disableChoices(id[1]);
+            }
+
+            function rightAnswer(id){
+                quizScore+=100;
+                document.getElementById(id).style.background="green";
+                document.getElementById('score').innerHTML = "Score: " + quizScore;
+                disableChoices(id[1]);
+            }
+
+            function disableChoices(qnum) {
+                document.getElementById(`choices${qnum}`).setAttribute("class","choices answered")
+                document.getElementById(`q${qnum}-a`).setAttribute("disabled","");
+                document.getElementById(`q${qnum}-b`).setAttribute("disabled","");
+                document.getElementById(`q${qnum}-c`).setAttribute("disabled","");
+                document.getElementById(`q${qnum}-d`).setAttribute("disabled","");
+                if (allAnswered()) {
+                    if (quizScore >= 300) {
+                        alert("Congratulations! You've passed this trial");
+                        document.getElementById("continue").setAttribute("class", "btn btn-success my-4");
+                    } else if (quizScore < 300) {
+                        alert("Hmm I'll give you another chance! ^^");
+                    document.getElementById("retry").setAttribute("class", "btn btn-success my-4")
+                    }
+                }
+            }
+
+            function allAnswered() {
+                for (let qnum = 1; qnum <= 5; qnum++) {
+                    if (document.getElementById(`choices${qnum}`).getAttribute("class").indexOf("answered") == -1) {
+                        return false
+                    }
+                }
+                return true
+            }
+
+            function musicPlay(){
+                music1.play();
+            }
+
+        </script>
+
+        <style>
+            body{
+                background-image: url('https://i.pinimg.com/originals/13/50/b3/1350b3bb1ba8c252dd4e6b75fce3e7ba.jpg');
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            header{
+                margin-top:25px;
+            }
+
+            h1{
+                text-align: center;
+                font-family: 'Press Start 2P', cursive;
+                color: #130d05;
+                font-size: 30px;
+            }
+            h4{
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                color: #130d05;
+            }
+            h3{
+                font-family: 'Phudu', cursive;
+            }
+
+            h5{
+                font-family: 'Nunito', sans-serif;
+            }
+
+            p{
+                font-family: 'Nabla', cursive;
+                font-weight: bold;
+                text-align: center;
+                font-size: 60px;
+            }
+
+            #q1-a, #q1-b, #q1-c, #q1-d{
+                background-color: #c9a175;
+                border-color: #937350;
+                border-width: 2px;
+            }
+
+            #q2-a, #q2-b, #q2-c, #q2-d{
+                background-color: #c9a175;
+                border-color: #937350;
+                border-width: 2px;
+            }
+
+            #q3-a, #q3-b, #q3-c, #q3-d{
+                background-color:  #c9a175;
+                border-color: #937350;
+                border-width: 2px;
+            }
+
+            #q4-a, #q4-b, #q4-c, #q4-d{
+                background-color: #c9a175;
+                border-color: #937350;
+                border-width: 2px;
+            }
+
+            #q5-a, #q5-b, #q5-c, #q5-d{
+                background-color: #c9a175;
+                border-color: #937350;
+                border-width: 2px;
+            }
+
+            .flex-container{
+                background-color: #ecdfd080;
+                width:35%;
+                height: 730px;
+                border-radius: 20px;
+                box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2);   
+                margin:auto;  
+                margin-top:30px;    
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .choices{
+                padding-top: 15px;
+                display: flex;
+                justify-content: space-evenly;
+                margin:auto;            
+                
+            }
+
+            img{
+                width:100%;
+                height:400px;
+                border-radius: 20px;
+                padding-bottom: 5px;
+            }
+
+            button{
+                color: bisque;
+            }
+
+        </style>
+    </head>
+    <body onmousemove="musicPlay()">
+
+        <audio loop id="music1">
+        <source src="soldier....instrumental.mp3">
+        </audio>
+
+        <header>
+            <h1> Character Quiz</h1>
+            <h4>-Several pages from an ancient book has been ripped off, those pages contain high warriors from another realm</h4>
+            <h4>-Help us restore the names of the estemeed warriors from the other realm (Fire Emblem) </h4>
+            <h4>-Get sufficient amount of points to complete this quest</h4>
+        </header>
+
+        <div class="flex-container">
+            <img src="https://ih1.redbubble.net/image.901053833.5215/mo,small,flatlay,product_square,600x600.jpg" alt="genny">
+            <h3>Question 1</h3>
+            <h5>What is the name of this Cleric of Novis Priory?</h5>
+            <h5>A. Ariana</h5>
+            <h5>B. Liearanh</h5>
+            <h5>C. Uriannie</h5>
+            <h5>D. Genny</h5>
+            <div id="choices1" class="choices">
+                <button id="q1-a" class="btn btn-primary wrong"  onclick="wrongAnswer(this.id)">A</button>
+                <button id="q1-b" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">B</button>
+                <button id="q1-c" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">C</button>
+                <button id="q1-d" class="btn btn-primary correct" onclick="rightAnswer(this.id)">D</button>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <img src="https://ih1.redbubble.net/image.1897725997.0421/mo,small,flatlay,product_square,600x600.jpg" alt="hector">
+            <h3>Question No. 2</h3>
+            <h5>Who is this handsome lord that wields an axe?</h5>
+            <h5>A. Hector</h5>
+            <h5>B. Raul</h5>
+            <h5>C. Naruto</h5>
+            <h5>D. Tanjiro</h5>
+            <div id="choices2" class="choices">
+                <button id="q2-a" class="btn btn-primary correct"  onclick="rightAnswer(this.id)">A</button>
+                <button id="q2-b" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">B</button>
+                <button id="q2-c" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">C</button>
+                <button id="q2-d" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">D</button>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <img src="https://ih1.redbubble.net/image.901053414.5204/mo,small,flatlay,product_square,600x600.jpg" alt="mae">
+            <h3>Question No. 3</h3>
+            <h5>Who is this cheerful pink-haired mage?</h5>
+            <h5>A. Sofia</h5>
+            <h5>B. Mae</h5>
+            <h5>C. Lara</h5>
+            <h5>D. Gisele</h5>
+            <div id="choices3" class="choices">
+                <button id="q3-a" class="btn btn-primary wrong"  onclick="wrongAnswer(this.id)">A</button>
+                <button id="q3-b" class="btn btn-primary correct" onclick="rightAnswer(this.id)">B</button>
+                <button id="q3-c" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">C</button>
+                <button id="q3-d" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">D</button>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <img src="https://ih1.redbubble.net/image.880981122.0517/mo,small,flatlay,product_square,600x600.jpg" alt="hubert">
+            <h3>Question No. 4</h3>
+            <h5>What is the name of this striking gentleman, or the son of Marquis Vestra and Edelgard's vassal?</h5>
+            <h5>A. Hubert</h5>
+            <h5>B. Yento</h5>
+            <h5>C. Kazehaya</h5>
+            <h5>D. Tomoe</h5>
+            <div id="choices4" class="choices">
+                <button id="q4-a" class="btn btn-primary correct"  onclick="rightAnswer(this.id)">A</button>
+                <button id="q4-b" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">B</button>
+                <button id="q4-c" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">C</button>
+                <button id="q4-d" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">D</button>
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <img src="https://ih1.redbubble.net/image.901055269.5248/mo,small,flatlay,product_square,600x600.jpg" alt="titania">
+            <h3>Question No. 5</h3>
+            <h5>What is the name of this elegant lady, the Commander of the Greil Mercenaries?</h5>
+            <h5>A. Nanami</h5>
+            <h5>B. Sawako</h5>
+            <h5>C. Titania</h5>
+            <h5>D. Erza Scarlet</h5>
+            <div id="choices5" class="choices">
+                <button id="q5-a" class="btn btn-primary wrong"  onclick="wrongAnswer(this.id)">A</button>
+                <button id="q5-b" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">B</button>
+                <button id="q5-c" class="btn btn-primary correct" onclick="rightAnswer(this.id)">C</button>
+                <button id="q5-d" class="btn btn-primary wrong" onclick="wrongAnswer(this.id)">D</button>
+            </div>
+        </div>
+
+        <p id="score">Score:</p>
+
+        <div class="text-center"><a id="continue" class="d-none" href="Scene_Farewell.html">Continue on your journey</a><a id="retry" class="d-none" href="verycoolquiz.html">Try again</a></div>
+    </body>
+    </html>

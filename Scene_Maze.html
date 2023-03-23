@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Start Your Journey</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <style>
+			body{
+				background-image: url('https://i.pinimg.com/736x/8c/3e/70/8c3e70a63646b6825a7f200647fe9806.jpg');
+				background-repeat:no-repeat;
+                background-position: 0% 3%;
+                background-size: cover;
+			}
+
+			#content{
+				background-color: rgb(27, 23, 18);
+				height: 170px;
+				position: absolute;
+				display: flex;
+				bottom: 3px;
+				left:10px;
+				right:10px;
+				border-top: 4px solid rgb(38, 82, 35);
+			}
+
+			#dialogue1{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+                color: whitesmoke;
+				top:0;
+				right:10px;
+				left:10px;
+				bottom:3px; 
+				background-color: rgb(27, 23, 18);
+				padding: 12px;
+				cursor: pointer;
+			}
+
+			#nextButton{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+			}
+
+			p{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+                color: whitesmoke;
+			}
+
+			button{
+				position: absolute;
+				bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+			}
+
+            #nextScene{
+				position:absolute;
+				bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+				display: none;
+			}
+        </style>
+
+		<script>
+			var clickButton=0;
+
+			function nextDialogue(){
+				clickButton++;
+					if (clickButton==1){
+						document.getElementById('dialogue1').innerHTML= "Anyways... I'm not sure if this is the right place-";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==2){
+						document.getElementById('dialogue1').innerHTML= "Oh no... I think I'm lost.I've been going around in circles.";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==3){
+						document.getElementById('dialogue1').innerHTML= "A rumbling sound fills the air.";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else{
+						document.getElementById("dialogue1").style.display="none";
+						document.getElementById("nextButton").style.display="none";
+						document.getElementById("content").style.display="none";
+						document.getElementById("nextScene").style.display="block";
+					}
+			}
+			function musicPlay(){
+            music1.play();
+       		}
+		</script>
+    </head> 
+
+    <body onmousemove="musicPlay()">
+		<audio loop id="music1">
+			<source src="forest-lullaby-110624.mp3">
+			</audio>
+		<div id="content">
+			
+			<div id="dialogue1">
+				<p>Alright... I didn't know that there was more to this realm despite me staying here for what I believe is a long time... Mr. Dwarf made a really cool game!! </p>
+			</div>
+			
+			<button class="btn btn-dark" id="nextButton" onclick="nextDialogue()">Next &gt;&gt;</button>
+			
+		</div>
+
+		<a class="btn btn-dark" id="nextScene" href="Scene_Maze2.html">Next &gt;&gt;</a>
+    </body>  
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Treegan's Quest</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<style>
+			.found {
+				color: green;
+				font-weight: bold;
+			}
+
+			img{
+				margin: 30px;
+				border: 7px solid rgb(53, 36, 19);
+			}
+
+			body{
+				background-image: url('https://rare-gallery.com/uploads/posts/570641-fantasy-theme.jpg');
+				background-size: cover;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 10px;
+				padding: 0;
+				}
+
+			li{
+				display: inline;
+				padding: 8px;
+				background-color: #d1c189;
+				font-family: 'Righteous', cursive;
+			}
+
+			p{
+				background-color: blanchedalmond;
+				color:#ba4e02;
+				font-weight: bold;
+				font-size: 20px;
+				font-family: 'Press Start 2P', cursive;
+			}
+
+			#continue{
+				font-family: 'Righteous', cursive;
+				color: rgb(153, 119, 32)
+			}
+
+			footer {
+				margin: 10px;
+				color:antiquewhite;
+				font-size: 10px;
+				}
+		</style>
+		<script>
+			let bookFound = false, bundleFound = false, cheeseFound = false, starFound = false, springFound = false;
+			function checkClick(event) {
+				let relativeX = (event.clientX - event.target.offsetLeft) / event.target.width * 1024;
+				let relativeY = (event.clientY - event.target.offsetTop) / event.target.height * 615;
+				console.log(relativeX, relativeY)
+				if (!bookFound && relativeX >= 711 && relativeX <= 796 && relativeY >= 420 && relativeY <= 557
+				               || relativeX >= 719 && relativeX <= 852 && relativeY >= 496 && relativeY <= 606) {
+					found("book");
+					bookFound = true;
+				}
+				if (!bundleFound && relativeX >= 235 && relativeX <= 361 && relativeY >= 350 && relativeY <= 372) {
+					found("bundle-of-sticks");
+					bundleFound = true;
+				}
+				if (!cheeseFound && relativeX >= 926 && relativeX <= 957 && relativeY >= 263 && relativeY <= 289) {
+					found("cheese");
+					cheeseFound = true;
+				}
+				if (!starFound && relativeX >= 433 && relativeX <= 474 && relativeY >= 17 && relativeY <= 55) {
+					found("star");
+					starFound = true;
+				}
+				if (!springFound && relativeX >= 829 && relativeX <= 882 && relativeY >= 14 && relativeY <= 82) {
+					found("spring");
+					springFound = true;
+				}
+				if (bookFound && bundleFound && cheeseFound && starFound && springFound) {
+					alert("Congratulations! You successfully helped Teegan!");
+					document.getElementById("continue").setAttribute("class", "btn btn-warning")
+				}
+			}
+			function found(thing) {
+				alert(`You found the ${thing.replaceAll("-"," ")}!`);
+				document.getElementById(thing).setAttribute("class", "found");
+			}
+
+			function musicPlay(){
+                music1.play();
+            }
+		</script>
+	</head>
+	<body class="text-center" onmousemove="musicPlay()">
+            <audio loop id="music1">
+            <source src="happy-adventure.mp3">
+            </audio>
+
+		<img onclick="checkClick(event)" src="hidden_object.jpg" alt="Very detailed picture with hidden stuff in it." width="1024" height="615">
+		<p>Help Teegan by finding the following:</p>
+		<ul>
+			<li id="book">Book</li>
+			<li id="bundle-of-sticks">Bundle of Sticks</li>
+			<li id="cheese">Cheese</li>
+			<li id="star">Star</li>
+			<li id="spring">Spring</li>
+		</ul>
+		<a id="continue" href="Scene_Dominosa.html" class="d-none">Continue on your journey</a>
+		<footer>Source: <a href="https://www.deviantart.com/aleksandr-osm/art/Hidden-object-scene-Ruined-fountain-552025108">https://www.deviantar1t.com/aleksandr-osm/art/Hidden-object-scene-Ruined-fountain-552025108</a></footer>
+	</body>
+</html>

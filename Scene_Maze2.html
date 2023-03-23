@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Start Your Journey</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <style>
+			body{
+				background-image: url('https://i.pinimg.com/originals/61/d6/01/61d601d0511aedd881ce72276fa5285b.jpg');
+				background-repeat:no-repeat;
+                background-position: 0% 3%;
+                background-size: cover;
+			}
+
+			#content{
+				background-color: rgb(27, 23, 18);
+				height: 170px;
+				position: absolute;
+				display: flex;
+				bottom: 3px;
+				left:10px;
+				right:10px;
+				border-top: 4px solid rgb(38, 82, 35);
+			}
+
+			#dialogue1{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+                color:whitesmoke;
+				top:0;
+				right:10px;
+				left:10px;
+				bottom:3px; 
+				background-color: rgb(27, 23, 18);
+				padding: 12px;
+				cursor: pointer;
+			}
+
+			#nextButton{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+			}
+
+			p{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+                color:rgb(24, 167, 103);
+			}
+
+			button{
+				position: absolute;
+                bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+			}
+
+            #nextScene{
+				position:absolute;
+				bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+				display: none;
+			}
+        </style>
+
+		<script>
+			var clickButton=0;
+
+			function nextDialogue(){
+				clickButton++;
+				    if (clickButton==1){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> You just entered a maze that releases deadly poisonous gases which could eliminate anyone in it!! Including you!!  ";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==2){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> But if you're smart and fast enough to escape this maze of mine within let's say... 30 seconds, maybe I can reconsider letting you live. But you better run... MWAHHAHAAHA </span>";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+                    else if (clickButton==3){
+						document.getElementById('dialogue1').innerHTML= "Oh goodness...";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else{
+						document.getElementById("dialogue1").style.display="none";
+						document.getElementById("nextButton").style.display="none";
+						document.getElementById("content").style.display="none";
+						document.getElementById("nextScene").style.display="block";
+					}
+			}
+
+			function musicPlay(){
+            music1.play();
+       		}
+		</script>
+    </head> 
+
+    <body onmousemove="musicPlay()">
+
+		<audio loop id="music1">
+			<source src="forest-lullaby-110624.mp3">
+			</audio>
+		
+		<div id="content">
+			
+			<div id="dialogue1">
+				<p>*chuckles* You think you can escape this realm? Well I won't allow it!</p>
+			</div>
+			
+			<button class="btn btn-dark" id="nextButton" onclick="nextDialogue()">Next &gt;&gt;</button>
+			
+		</div>
+
+		<a class="btn btn-dark" id="nextScene" href="maze.html">Next &gt;&gt;</a>
+    </body>  
+
+</html>

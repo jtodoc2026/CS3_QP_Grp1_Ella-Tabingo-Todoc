@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1">
+        <title>How to Play</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Rubik+Iso&display=swap" rel="stylesheet">
+    
+    <style>
+        body{
+            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/379/607/desktop-wallpaper-artwork-digital-art-landscape-philipp-a-ulrich-pixel-art-pixelated-waterfall-trees-1920x960-spring-pixel-art.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }            
+            
+        h1{
+            background-color: #e8b881;
+            border: solid rgb(48, 32, 18) 5px;
+            font-family: 'Rubik Iso', cursive;
+            font-size: 60px;
+            text-align: center;
+            margin: auto;
+            margin-top: 10px;
+            width: 800px;
+        }
+
+        #rules{
+            background-color: #e8b881;
+            border: solid rgb(74, 48, 24) 10px;
+            width: 800px;
+            margin:auto;
+            padding: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        li{
+            font-family: 'Press Start 2P', cursive;
+            color:rgb(112, 76, 43);
+            font-size: 15px; 
+            padding-bottom: 5px;
+        }
+
+        #backtoTitlePage{
+            margin:auto;
+            text-align: center;
+            width: 190px;
+            font-family: 'Press Start 2P', cursive;
+            display: block;
+            padding: 10px;
+        }
+
+    </style>
+
+    <script>
+        function musicPlay(){
+            music1.play();
+        }
+    </script>
+    </head>
+
+    <body onmousemove="musicPlay()">
+        <audio loop id="music1">
+        <source src="soldier....instrumental.mp3">
+        </audio>
+
+        <h1>How to Play the Game</h1>
+
+        <div id="rules">       
+            <ul>
+                <li>You entered an unknown realm. As wondrous and surreal as it seems, it is still not your reality. You must try to find a way back to the realm you're most familiar with - reality.</li> 
+                <li>Follow the instructions set by the characters you will meet in the game.</li>
+                <li>Do not break lore, play it as it should be played. </li>
+                <li>Do not spoil information for other players. </li>
+                <li>Be a good guest and player, please follow the rules.</li>
+                <li>Most importantly, have fun!</li>
+                <li>Click <a href="cheatsheet.html">HERE</a> to get access to some trips and tricks that you can use for the game!</li>
+            </ul>
+        </div>
+
+        <a class="btn btn-dark" id="backtoTitlePage" href="index.html">Back to Menu &gt;&gt;</a>
+    </body>
+    </html>

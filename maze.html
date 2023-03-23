@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>A Dreadful Encounter</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<style>
+			body{
+				background-image: url('https://cdnb.artstation.com/p/assets/images/images/014/764/247/medium/lucy-linse-forest-3333.jpg?1545350981');
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			td {
+				border: 7px solid rgb(145, 122, 164);
+				height: 3.5em;
+				width: 3.5em;
+			}
+			td.up {
+				border-top: 1px solid transparent;
+			}
+			td.right {
+				border-right: 1px solid transparent;
+			}
+			td.down {
+				border-bottom: 1px solid transparent;
+			}
+			td.left {
+				border-left: 1px solid transparent;
+			}
+			td img {
+				display: block;
+				height: 2em;
+				margin: auto;
+				width: 2em;
+			}
+			#maze{
+				background-color: rgba(26, 4, 53, 0.7);
+				width: 950px;
+				margin: auto;
+				margin-top: 15px;
+				padding: 15px;
+				border-radius: 10px;
+			}
+
+			#instructions{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+				color:whitesmoke;
+				text-align: center;
+			}
+			button{
+				background-color:  rgba(10, 40, 11, 0.7);
+				padding-bottom: 5px;
+				padding-top: 0;
+			}
+
+			#timer{
+				background-color: rgb(0, 0, 0);
+				margin: 10px;
+				font-family: 'Press Start 2P', cursive;
+				color:rgb(255, 255, 255)
+			}
+		
+		</style>
+		<script>
+			let currentRow = 0;
+			let currentCol = 0;
+			let timer;
+			let seconds = 0;
+			function movePlayer(direction) {
+				if (timer == undefined) {
+					timer = setInterval(runTimer, 10)
+				}
+				if (document.getElementById(`t${currentRow}${currentCol}`).getAttribute("class").indexOf(direction) == -1) return false;
+				document.getElementById(`t${currentRow}${currentCol}`).innerHTML = "";
+				switch (direction) {
+					case "up":
+						currentRow--;
+						break;
+					case "down":
+						currentRow++;
+						break;
+					case "left":
+						currentCol--;
+						break;
+					case "right":
+						currentCol++;
+						break;
+				}
+				if (document.getElementById(`t${currentRow}${currentCol}`) != null) {
+					document.getElementById(`t${currentRow}${currentCol}`).innerHTML = "<img src='player.png'>";
+				} else if (timer) {
+					alert("Congratulations! You survived!");
+					document.getElementById("continue").setAttribute("class","btn btn-success mt-4");
+					clearInterval(timer);
+				}
+			}
+			function runTimer() {
+				seconds += 0.01;
+				document.getElementById("timer").innerHTML = `${seconds.toFixed(2)} seconds`;
+				if (seconds >= 30) {
+					alert("Oh no! You died! Let's revive you and try again!");
+					document.getElementById("retry").setAttribute("class","btn btn-success mt-4")
+					clearInterval(timer);
+					timer = false;
+				}
+			}
+
+			function musicPlay(){
+                music1.play();
+            }
+
+		</script>
+	</head>
+	<body onmousemove="musicPlay()">
+		<div id="maze">
+	
+			<audio loop id="music1">
+			<source src="eerie-boss.mp3">
+			</audio>
+
+			<div id="instructions"> Quick! Use the arrows below to escape the maze before your 30 seconds is up! </div>
+			<div class="container d-flex flex-column align-items-center">
+				<table class="mt-4">
+					<tr>
+						<td id="t00" class="right"><img src='player.png' alt="You"></td>
+						<td id="t01" class="right left"></td>
+						<td id="t02" class="left down right"></td>
+						<td id="t03" class="right down left"></td>
+						<td id="t04" class="left right"></td>
+						<td id="t05" class="left right down"></td>
+						<td id="t06" class="left down"></td>
+						<td id="t07" class="down"></td>
+					</tr>
+					<tr>
+						<td id="t10" class="up right down"></td>
+						<td id="t11" class="left down"></td>
+						<td id="t12" class="up down"></td>
+						<td id="t13" class="up down"></td>
+						<td id="t14" class="down"></td>
+						<td id="t15" class="down up"></td>
+						<td id="t16" class="up right down"></td>
+						<td id="t17" class="left up"></td>
+					</tr>
+					<tr>
+						<td id="t20" class="up down"></td>
+						<td id="t21" class="up down"></td>
+						<td id="t22" class="up"></td>
+						<td id="t23" class="up right"></td>
+						<td id="t24" class="left up down"></td>
+						<td id="t25" class="down up"></td>
+						<td id="t26" class="right up"></td>
+						<td id="t27" class="down left"></td>
+					</tr>
+					<tr>
+						<td id="t30" class="up down"></td>
+						<td id="t31" class="down up"></td>
+						<td id="t32" class="down right"></td>
+						<td id="t33" class="right left"></td>
+						<td id="t34" class="left up"></td>
+						<td id="t35" class="up down"></td>
+						<td id="t36" class="down"></td>
+						<td id="t37" class="up down"></td>
+					</tr>
+					<tr>
+						<td id="t40" class="up down"></td>
+						<td id="t41" class="right up"></td>
+						<td id="t42" class="left up"></td>
+						<td id="t43" class="right"></td>
+						<td id="t44" class="left down"></td>
+						<td id="t45" class="up down"></td>
+						<td id="t46" class="right up down"></td>
+						<td id="t47" class="left up down"></td>
+					</tr>
+					<tr>
+						<td id="t50" class="up down"></td>
+						<td id="t51" class="right down"></td>
+						<td id="t52" class="left right"></td>
+						<td id="t53" class="left down"></td>
+						<td id="t54" class="right up"></td>
+						<td id="t55" class="left up"></td>
+						<td id="t56" class="up"></td>
+						<td id="t57" class="up down"></td>
+					</tr>
+					<tr>
+						<td id="t60" class="up down"></td>
+						<td id="t61" class="right up"></td>
+						<td id="t62" class="left down"></td>
+						<td id="t63" class="up down"></td>
+						<td id="t64" class="right"></td>
+						<td id="t65" class="down left right"></td>
+						<td id="t66" class="left right"></td>
+						<td id="t67" class="left up"></td>
+					</tr>
+					<tr>
+						<td id="t70" class="right up"></td>
+						<td id="t71" class="right left"></td>
+						<td id="t72" class="left up"></td>
+						<td id="t73" class="right up"></td>
+						<td id="t74" class="left down"></td>
+						<td id="t75" class="right up"></td>
+						<td id="t76" class="left right"></td>
+						<td id="t77" class="left"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="container mt-2 text-center">
+				<div class="row">
+					<div class="col-5"></div>
+					<div class="col-2"><button class="btn btn-light px-3 py-2" onclick="movePlayer('up')">^</button></div>
+					<div class="col-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-5"></div>
+					<div class="col-1"><button class="btn btn-light px-3 py-2" onclick="movePlayer('left')">&lt;</button></div>
+					<div class="col-1"><button class="btn btn-light px-3 py-2" onclick="movePlayer('right')">&gt;</button></div>
+					<div class="col-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-5"></div>
+					<div class="col-2"><button class="btn btn-light px-3 py-2" onclick="movePlayer('down')">v</button></div>
+					<div class="col-5"></div>
+				</div>
+				<span id="timer"></span>
+				<br>
+				<a id="continue" class="d-none" href="Scene_Quiz.html">Continue on your journey</a><a id="retry" class="d-none" href="maze.html">Try again</a>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Start Your Journey</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nabla&family=Press+Start+2P&family=Righteous&family=Rubik+Iso&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <style>
+			body{
+				background-image: url('https://www.worldanvil.com/media/cache/cover/uploads/images/9149f6ac1d817d06be106738c7035d85.jpg');
+				background-repeat:no-repeat;
+                background-position: 50% 10%;
+                background-size:50%;
+
+			}
+
+			#content{
+				background-color: antiquewhite;
+				height: 170px;
+				position: absolute;
+				display: flex;
+				bottom: 3px;
+				left:10px;
+				right:10px;
+				border-top: 4px solid rgb(74, 48, 24);
+			}
+
+			#dialogue1{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+				top:0;
+				right:10px;
+				left:10px;
+				bottom:3px; 
+				background-color: antiquewhite;
+				padding: 12px;
+				cursor: pointer;
+			}
+
+			#nextButton{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+			}
+
+			p{
+				font-family: 'Press Start 2P', cursive;
+				font-size: 13px;
+			}
+
+			button{
+				position: absolute;
+                bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+			}
+
+            #nextScene{
+				position:absolute;
+				bottom:0;
+				right: 0;
+				margin: 12px;
+				margin-left: 10px;
+				width: 130px;
+				font-family: 'Press Start 2P', cursive;
+				display: none;
+			}
+        </style>
+
+		<script>
+			var clickButton=0;
+
+			function nextDialogue(){
+				clickButton++;
+				    if (clickButton==1){
+						document.getElementById('dialogue1').innerHTML= "As I am still catching my breath from what happened in the maze, I suddenly hear music fill the air.";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==2){
+						document.getElementById('dialogue1').innerHTML= "Woah... It's so soothing... I wonder where that's coming from...";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==3){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> Hello dear, are you lost? </span>";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==4){
+						document.getElementById('dialogue1').innerHTML= "Once the music stopped, I immediately broke out from my trance.";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==5){
+						document.getElementById('dialogue1').innerHTML= "O-oh! Uhm... I think so... I heard a sound- It was really beautiful-";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==6){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> Ohh *chuckles* I see, well thank you. That sound is from my flute, it was supposed to draw in a certain someone... Ah... I see... Are you, perhaps, the one who was sent by the wise statue?</span>";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==7){
+						document.getElementById('dialogue1').innerHTML= "U-uhm yes ma'am.";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==8){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> You don't need to be nervous around me, my dear. Now back to my request...</span>";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==9){
+						document.getElementById('dialogue1').innerHTML= "<span class='text-success'> There is a particular book that I am fond of, it is about legendary warriors from another realm. Sadly, several pages have been torn out and I couldn’t find its whereabouts. I was hoping that you help me restore the information about them!</span>";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else if (clickButton==10){
+						document.getElementById('dialogue1').innerHTML= "Is that so? Ever since my stay here in this realm, I have been reading about some ancient legends about warriors from different realms as a hobby! I will give my very best on this one!";
+						document.getElementById("nextScene").style.display="none";
+					}
+
+					else{
+						document.getElementById("dialogue1").style.display="none";
+						document.getElementById("nextButton").style.display="none";
+						document.getElementById("content").style.display="none";
+						document.getElementById("nextScene").style.display="block";
+					}
+			}
+
+			function musicPlay(){
+				music1.play();
+			}
+		</script>
+    </head> 
+
+    <body onmousemove="musicPlay()">
+
+		<audio loop id="music1">
+		<source src="the-woodwind-song-11495.mp3">
+		</audio>
+
+		<div id="content">
+			
+			<div id="dialogue1">
+				<p>*panting* I still can't get over what happened a while ago... I thought I was going to die...</p>
+			</div>
+			
+			<button class="btn btn-dark" id="nextButton" onclick="nextDialogue()">Next &gt;&gt;</button>
+			
+		</div>
+
+		<a class="btn btn-dark" id="nextScene" href="verycoolquiz.html">Next &gt;&gt;</a>
+    </body>  
+
+</html>
